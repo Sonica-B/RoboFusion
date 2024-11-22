@@ -79,4 +79,4 @@ model.fit(X_train, y_train, epochs=20, validation_data=(X_test, y_test), verbose
 
 # Save the model
 model.save('gesture_model.h5')
-print("Model training complete and saved as 'gesture_model.h5'.")
+print("Model model complete and saved as 'gesture_model.h5'.")

@@ -71,7 +71,7 @@ class GestureRecognition:
         return model
 
     def collect_training_data(self, num_samples_per_gesture=100):
-        """Collect training data through webcam"""
+        """Collect model data through webcam"""
         X = []
         y = []
 
@@ -247,12 +247,12 @@ if __name__ == "__main__":
     # Initialize gesture recognition system
     gr = GestureRecognition()
 
-    # Collect training data
+    # Collect model data
     print("Starting data collection...")
     X, y = gr.collect_training_data(num_samples_per_gesture=100)
 
     # Train model
-    print("\nStarting model training...")
+    print("\nStarting model model...")
     history = gr.train_model(X, y)
 
     # Run live prediction

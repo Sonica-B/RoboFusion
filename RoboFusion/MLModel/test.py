@@ -4,7 +4,7 @@ import numpy as np
 from keras.src.saving import load_model
 
 # Load trained model
-model = load_model('gesture_model.h5')
+model = load_model('model/gesture_model.h5')
 
 # Initialize MediaPipe Hand
 mp_hands = mp.solutions.hands
