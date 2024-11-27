@@ -18,6 +18,10 @@ current_label = None
 last_save_time = 0
 end_time = 0
 
+DEFAULT_ANGLE_LIMIT = 0.0
+MAX_ANGLE_LIMIT = 0.7
+MIN_ANGLE_LIMIT = -0.7
+
 # Default Angles values for robotic arm in radians
 ARM_ANGLES = {
     "gripper_angle": 0.0,

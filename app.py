@@ -109,21 +109,21 @@ while cap.isOpened():
                 if start_time - end_time >= ANGLE_UPDATE_INTERVAL:
                     # Gripper Angle
                     if gesture_text == "Fist":
-                        ARM_ANGLES["gripper_angle"] = max(ARM_ANGLES["gripper_angle"] - 0.1, 0.0)  # Close gripper
+                        ARM_ANGLES["gripper_angle"] = max(ARM_ANGLES["gripper_angle"] - 0.1, DEFAULT_ANGLE_LIMIT)  # Close gripper
                     elif gesture_text == "Open Hand":
-                        ARM_ANGLES["gripper_angle"] = min(ARM_ANGLES["gripper_angle"] + 0.1, 1.57)  # Open gripper
+                        ARM_ANGLES["gripper_angle"] = min(ARM_ANGLES["gripper_angle"] + 0.1, MAX_ANGLE_LIMIT)  # Open gripper
 
                     # Base Motor Angle
                     base_motor_angle = map_wrist_to_base_angle(wrist_x, width)  # Map wrist x to base motor angle
-                    ARM_ANGLES["base_motor_angle"] = max(min(base_motor_angle, 1.57), -1.57)  # Clamp to [-1.57, 1.57]
+                    ARM_ANGLES["base_motor_angle"] = max(min(base_motor_angle, 1.57), MIN_ANGLE_LIMIT)  # Clamp to [-1.57, 1.57]
 
                     end_time = start_time
 
                     # Wrist Angle
                     if gesture_text == "Palm Flat Up":
-                        ARM_ANGLES["wrist_angle"] = min(ARM_ANGLES["wrist_angle"] + 0.1, 1.57)  # Rotate wrist upward
+                        ARM_ANGLES["wrist_angle"] = min(ARM_ANGLES["wrist_angle"] + 0.1, MAX_ANGLE_LIMIT)  # Rotate wrist upward
                     elif gesture_text == "Palm Flat Down":
-                        ARM_ANGLES["wrist_angle"] = max(ARM_ANGLES["wrist_angle"] - 0.1, -1.57)  # Rotate wrist downward
+                        ARM_ANGLES["wrist_angle"] = max(ARM_ANGLES["wrist_angle"] - 0.1, MIN_ANGLE_LIMIT)  # Rotate wrist downward
                     # elif index_tip_y < height * 0.4:  # Index finger tip moves up
                     #     ARM_ANGLES["wrist_angle"] = min(ARM_ANGLES["wrist_angle"] + 0.1, 1.57)
                     # elif index_tip_y > height * 0.6:  # Index finger tip moves down
@@ -131,9 +131,9 @@ while cap.isOpened():
 
                     # Elbow Angle
                     if gesture_text == "Thumbs Up":
-                        ARM_ANGLES["elbow_angle"] = min(ARM_ANGLES["elbow_angle"] + 0.1, 1.57)  # Increment elbow angle
+                        ARM_ANGLES["elbow_angle"] = min(ARM_ANGLES["elbow_angle"] + 0.1, MAX_ANGLE_LIMIT)  # Increment elbow angle
                     elif gesture_text == "Thumbs Down":
-                        ARM_ANGLES["elbow_angle"] = max(ARM_ANGLES["elbow_angle"] - 0.1, -1.57)  # Decrement elbow angle
+                        ARM_ANGLES["elbow_angle"] = max(ARM_ANGLES["elbow_angle"] - 0.1, MIN_ANGLE_LIMIT)  # Decrement elbow angle
                     # elif wrist_y < height * 0.4:  # Hand moves up
                     #     ARM_ANGLES["elbow_angle"] = min(ARM_ANGLES["elbow_angle"] + 0.1, 1.57)
                     # elif wrist_y > height * 0.6:  # Hand moves down
@@ -142,15 +142,15 @@ while cap.isOpened():
                     # Shoulder Angle
                     # Vertical Shoulder Control
                     if gesture_text == "Palm Flat Up" and wrist_y < height * 0.4:
-                        ARM_ANGLES["shoulder_vertical_angle"] = min(ARM_ANGLES["shoulder_vertical_angle"] + 0.1, 1.57)  # Move up
+                        ARM_ANGLES["shoulder_vertical_angle"] = min(ARM_ANGLES["shoulder_vertical_angle"] + 0.1, MAX_ANGLE_LIMIT)  # Move up
                     elif gesture_text == "Palm Flat Down" and wrist_y > height * 0.6:
-                        ARM_ANGLES["shoulder_vertical_angle"] = max(ARM_ANGLES["shoulder_vertical_angle"] - 0.1, -1.57)  # Move down
+                        ARM_ANGLES["shoulder_vertical_angle"] = max(ARM_ANGLES["shoulder_vertical_angle"] - 0.1, MIN_ANGLE_LIMIT)  # Move down
 
                     # Horizontal Shoulder Control
                     if wrist_x < width * 0.4:  # Move left
-                        ARM_ANGLES["shoulder_horizontal_angle"] = max(ARM_ANGLES["shoulder_horizontal_angle"] - 0.1, -1.57)
+                        ARM_ANGLES["shoulder_horizontal_angle"] = max(ARM_ANGLES["shoulder_horizontal_angle"] - 0.1, MIN_ANGLE_LIMIT)
                     elif wrist_x > width * 0.6:  # Move right
-                        ARM_ANGLES["shoulder_horizontal_angle"] = min(ARM_ANGLES["shoulder_horizontal_angle"] + 0.1, 1.57)
+                        ARM_ANGLES["shoulder_horizontal_angle"] = min(ARM_ANGLES["shoulder_horizontal_angle"] + 0.1, MAX_ANGLE_LIMIT)
 
                 # Display motor angles
                 cv2.putText(image, f"Gripper: {ARM_ANGLES['gripper_angle']:.2f} rad", (10, 80),
