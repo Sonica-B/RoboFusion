@@ -1,5 +1,6 @@
 # Model Path
 MODEL_PATH = "D:/RoboFusion2/RoboFusion/MLModel/models/gesture_classification_model.keras"
+SCALER_PATH = "/home/harshrocks/mlProject/src/rbe500_example_py/Robo_Fusion/MLModel/models/scaler.pkl.npy"
 
 # Video Parameters
 VIDEO_FEED_WIDTH = 640
@@ -35,7 +36,7 @@ ARM_ANGLES = {
 # Base Motor Parameters
 BASE_MOTOR_MIN_ANGLE = -1.57  # radians
 BASE_MOTOR_MAX_ANGLE = 1.57  # radians
-BASE_MOTOR_CENTER_TOLERANCE = 0.05  # tolerance for dead zone in normalized wrist position
+BASE_MOTOR_CENTER_TOLERANCE = 0.1  # tolerance for dead zone in normalized wrist position
 SHOULDER_MAX_ANGLE = 1.57  # Max angle for shoulder
 WRIST_MAX_ANGLE = 1.57  # Max angle for wrist
 ELBOW_MAX_ANGLE = 1.57  # Max angle for elbow
